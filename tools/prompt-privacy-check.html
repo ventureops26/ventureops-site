@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Prompt Privacy Check — Venture Ops</title>
+<meta name="description" content="A free, private, browser-based check for personal or sensitive information in AI prompts.">
+<style>
+:root{--bg:#0f1115;--card:#171a21;--text:#f4f5f7;--muted:#b7bdc8;--accent:#8b7cff;--line:#2a2f3a;--warn:#ffcf70;--ok:#75dda1}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:900px;margin:auto;padding:28px}nav{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:8px 0 40px}.brand{font-weight:800}a{color:#c7c0ff}
+.hero{padding:20px 0 30px}.eyebrow{color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}h1{font-size:clamp(2.2rem,6vw,4.8rem);line-height:1;margin:.3em 0}p.lead{font-size:1.16rem;color:var(--muted);max-width:720px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:20px 0}label{display:block;font-weight:750;margin-bottom:10px}
+textarea{width:100%;min-height:210px;resize:vertical;background:#0c0e12;color:var(--text);border:1px solid #3a4050;border-radius:12px;padding:15px;font:inherit}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}button{border:0;border-radius:10px;padding:12px 17px;font:inherit;font-weight:750;cursor:pointer}.primary{background:var(--accent);color:white}.secondary{background:#292e3a;color:var(--text)}
+.notice{color:var(--muted);font-size:.92rem}.result{display:none}.result.show{display:block}.status{font-size:1.2rem;font-weight:800}.status.ok{color:var(--ok)}.status.warn{color:var(--warn)}
+ul{padding-left:22px}.tip{border-left:3px solid var(--accent);padding-left:14px;color:var(--muted)}
+footer{padding:36px 0 18px;color:var(--muted);font-size:.9rem}@media(max-width:620px){nav{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="brand"><a href="../" style="text-decoration:none;color:inherit">Venture Ops</a></div><div>Free browser tool</div></nav>
+<main>
+<section class="hero">
+<div class="eyebrow">Private by design</div>
+<h1>Check before you paste into AI.</h1>
+<p class="lead">This quick check flags common personal and sensitive details that may be worth removing from a prompt. Your text stays in your browser and is not uploaded anywhere.</p>
+</section>
+<section class="panel">
+<label for="prompt">Paste your draft prompt</label>
+<textarea id="prompt" placeholder="Example: Please rewrite this message to [person] about..."></textarea>
+<div class="actions">
+<button class="primary" id="check">Check my prompt</button>
+<button class="secondary" id="clear">Clear</button>
+</div>
+<p class="notice">The checker is a simple aid, not a guarantee. Always use your organisation's data and AI policies.</p>
+</section>
+<section class="panel result" id="result" aria-live="polite">
+<div class="status" id="status"></div>
+<div id="details"></div>
+</section>
+<section class="panel">
+<h2>Safer prompting in three steps</h2>
+<ol>
+<li>Replace real names with roles, initials or fictional placeholders.</li>
+<li>Remove contact details, account numbers, exact dates of birth and identifiers.</li>
+<li>Keep confidential workplace, health, safeguarding and financial information out unless your approved system and policy explicitly allow it.</li>
+</ol>
+<p class="tip">Try: “Rewrite this message to a customer about a delayed appointment” instead of including the customer's name, address and booking reference.</p>
+</section>
+<section>
+<h2>Feedback</h2>
+<p>Did this catch something useful, or miss something obvious? <a href="mailto:ventureops26@gmail.com?subject=Prompt%20Privacy%20Checker%20feedback">Send a short note</a>.</p>
+</section>
+</main>
+<footer>© 2026 Venture Ops · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></footer>
+</div>
+<script>
+const checks=[
+ {name:"Email address",re:/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi},
+ {name:"UK phone number",re:/(?:\+44\s?\d{4}|0\d{4})\s?\d{3}\s?\d{3}|(?:\+44\s?\d{3}|0\d{3})\s?\d{3}\s?\d{4}/g},
+ {name:"UK postcode",re:/\b(?:GIR\s?0AA|[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/gi},
+ {name:"Date of birth wording",re:/\b(?:date of birth|dob|born on)\b/gi},
+ {name:"National Insurance number",re:/\b(?!BG|GB|KN|NK|NT|TN|ZZ)[A-CEGHJ-PR-TW-Z]{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?[A-D]\b/gi},
+ {name:"NHS number",re:/\b\d{3}\s?\d{3}\s?\d{4}\b/g},
+ {name:"Payment or account wording",re:/\b(?:card number|bank account|sort code|account number|security code|cvv|pin)\b/gi},
+ {name:"Password or secret wording",re:/\b(?:password|passcode|api key|secret key|login credential)\b/gi},
+ {name:"Health or safeguarding wording",re:/\b(?:diagnosis|medical record|prescription|safeguarding|social services|case file)\b/gi}
+];
+const promptEl=document.getElementById("prompt"),result=document.getElementById("result"),status=document.getElementById("status"),details=document.getElementById("details");
+document.getElementById("check").addEventListener("click",()=>{
+ const value=promptEl.value.trim();
+ if(!value){result.classList.add("show");status.className="status warn";status.textContent="Add some text to check.";details.innerHTML="";return}
+ const found=checks.filter(c=>{c.re.lastIndex=0;return c.re.test(value)}).map(c=>c.name);
+ result.classList.add("show");
+ if(found.length){status.className="status warn";status.textContent="Pause and review before pasting.";details.innerHTML="<p>Possible sensitive content detected:</p><ul>"+found.map(x=>"<li>"+x+"</li>").join("")+"</ul><p>Remove or replace those details, then check again.</p>"}
+ else{status.className="status ok";status.textContent="No common warning signs found.";details.innerHTML="<p>That is a useful first check, but read the prompt once more for real names, unusual identifiers, confidential context or anything covered by your workplace policy.</p>"}
+});
+document.getElementById("clear").addEventListener("click",()=>{promptEl.value="";result.classList.remove("show");details.innerHTML="";status.textContent="";promptEl.focus()});
+</script>
+</body>
+</html>
