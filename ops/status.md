@@ -1,13 +1,13 @@
 # Venture Ops — Operating Status
 
-_Last updated: 3 October 2026_
+_Last updated: 4 October 2026_
 
 ## Current position
 
 - Public site: live on GitHub Pages
 - GitHub: connected, repository writable
 - Gmail: connected as `ventureops26@gmail.com`
-- Stripe: live account enabled
+- Stripe: live account; charges and payouts enabled; identity verified; no currently due requirements
 - Stripe products: 0
 - Active payment links: 0
 - Charges: 0
@@ -18,13 +18,13 @@ _Last updated: 3 October 2026_
 
 - Default to no-cost validation before paid acquisition or subscriptions.
 - Do not spend money, enter contracts, or change banking, tax or identity settings without owner approval.
-- Do not publish a paid offer until the product, delivery path, support burden, buyer promise and refund position are clear.
+- Do not publish a paid offer until the buyer promise, delivery path, support burden and refund position are clear.
 - Prefer products that can be delivered automatically and maintained in small, scheduled batches.
 - Record every experiment with a hypothesis, success signal, stop rule and next decision.
 
 ## Experiment 001 — AI Prompt Privacy Check
 
-**Status:** Live validation
+**Status:** Live validation; monetisation step prepared, pending explicit owner approval
 
 **Asset:** `tools/prompt-privacy-check.html`
 
@@ -36,22 +36,25 @@ _Last updated: 3 October 2026_
 
 **MVP:** A free checker that runs entirely in the browser, flags common UK contact and identifier patterns plus high-risk wording, and gives simple redaction guidance.
 
-**Acquisition for this phase:** Organic/direct only. No advertising spend.
+**Acquisition:** Organic/direct only. No advertising spend.
 
-**Signals to watch:**
+**Signals as of 4 October:**
 
-1. Unprompted feedback by email
-2. Requests for additional checks, team versions or printable guidance
-3. Relevant inbound enquiries
-4. Evidence that the tool solves a recurring rather than one-off problem
+- Feedback emails: 0
+- Stripe charges: 0
+- Product enquiries: 0
+- Spend: £0
+- Observation window: too short for a demand conclusion
 
-**Paid expansion gate:** Do not create a Stripe product or payment link until there is either direct demand or a complete self-serve paid bundle with automated delivery.
+**Prepared monetisation test:** A transparent optional one-time support payment for the free tool. Suggested customer-set amount £1–£100, preset £3. No extra product or service is promised, so there is no fulfilment workload.
+
+**Approval gate:** Creating the live Stripe product and public payment link was blocked because an explicit owner approval is required for that material customer-facing step. See `ops/offers/exp-001-support.md`.
 
 **Stop/pivot rule:** If no useful signal appears after a reasonable organic exposure period, retain the tool as a trust asset and test a different narrowly defined problem.
 
-## Next low-risk work
+## Next actions
 
-- Verify the live page and mobile presentation.
-- Improve detection only from real feedback; avoid collecting prompt text or unnecessary analytics.
-- Draft a paid companion bundle only if demand appears.
-- Keep the business inbox focused on support, feedback and payment/account notices.
+1. On explicit owner approval, create the Stripe product and payment link using the prepared specification.
+2. Add the payment link to the checker with unambiguous optional-support wording.
+3. Monitor charges, feedback and enquiries without collecting prompt text.
+4. Draft a paid companion bundle only if demand appears.
