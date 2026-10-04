@@ -12,7 +12,7 @@ _Last updated: 4 October 2026_
 - Active payment links: 0
 - Charges: 0
 - Available and pending Stripe balance: £0
-- External spend committed by Venture Ops: £0
+- External spend committed by Venture Ops: £0\n- Organic discovery: canonical metadata, sitemap and crawler directives published
 
 ## Operating guardrails
 
@@ -44,7 +44,7 @@ _Last updated: 4 October 2026_
 - Stripe charges: 0
 - Product enquiries: 0
 - Spend: £0
-- Observation window: too short for a demand conclusion
+- Observation window: too short for a demand conclusion\n- Search readiness: sitemap, canonical links and structured tool metadata published
 
 **Prepared monetisation test:** A transparent optional one-time support payment for the free tool. Suggested customer-set amount £1–£100, preset £3. No extra product or service is promised, so there is no fulfilment workload.
 
