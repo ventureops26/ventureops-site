@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ventureops26.github.io/ventureops-site/sitemap.xml
