@@ -1,6 +1,6 @@
 # Venture Ops — Operating Status
 
-_Last updated: 4 October 2026_
+_Last updated: 5 October 2026_
 
 ## Current position
 
@@ -8,11 +8,12 @@ _Last updated: 4 October 2026_
 - GitHub: connected, repository writable
 - Gmail: connected as `ventureops26@gmail.com`
 - Stripe: live account; charges and payouts enabled; identity verified; no currently due requirements
-- Stripe products: 0
-- Active payment links: 0
+- Stripe products: 1 active
+- Active payment links: 1
 - Charges: 0
 - Available and pending Stripe balance: £0
-- External spend committed by Venture Ops: £0\n- Organic discovery: canonical metadata, sitemap and crawler directives published
+- External spend committed by Venture Ops: £0
+- Organic discovery: canonical metadata, sitemap and crawler directives published
 
 ## Operating guardrails
 
@@ -24,7 +25,7 @@ _Last updated: 4 October 2026_
 
 ## Experiment 001 — AI Prompt Privacy Check
 
-**Status:** Live validation; monetisation step prepared, pending explicit owner approval
+**Status:** Live validation with active optional-support payment route
 
 **Asset:** `tools/prompt-privacy-check.html`
 
@@ -38,23 +39,24 @@ _Last updated: 4 October 2026_
 
 **Acquisition:** Organic/direct only. No advertising spend.
 
-**Signals as of 4 October:**
+**Signals as of 5 October:**
 
 - Feedback emails: 0
 - Stripe charges: 0
 - Product enquiries: 0
 - Spend: £0
-- Observation window: too short for a demand conclusion\n- Search readiness: sitemap, canonical links and structured tool metadata published
+- Search readiness: sitemap, canonical links and structured tool metadata published
+- Willingness-to-pay test: live
 
-**Prepared monetisation test:** A transparent optional one-time support payment for the free tool. Suggested customer-set amount £1–£100, preset £3. No extra product or service is promised, so there is no fulfilment workload.
+**Monetisation test:** A transparent optional one-time support payment for the free tool. Customer-set amount £1–£100, preset £3. No extra product or service is promised, so there is no fulfilment workload.
 
-**Approval gate:** Creating the live Stripe product and public payment link was blocked because an explicit owner approval is required for that material customer-facing step. See `ops/offers/exp-001-support.md`.
+**Live Payment Link:** https://buy.stripe.com/8x27sN5MogrpgWa4rtfEk00
 
 **Stop/pivot rule:** If no useful signal appears after a reasonable organic exposure period, retain the tool as a trust asset and test a different narrowly defined problem.
 
 ## Next actions
 
-1. On explicit owner approval, create the Stripe product and payment link using the prepared specification.
-2. Add the payment link to the checker with unambiguous optional-support wording.
-3. Monitor charges, feedback and enquiries without collecting prompt text.
-4. Draft a paid companion bundle only if demand appears.
+1. Monitor charges, feedback and enquiries without collecting prompt text.
+2. Keep the tool free while the willingness-to-pay test runs.
+3. Draft a paid companion bundle only if demand appears.
+4. Do not spend the experiment reserve without a separately justified and approved action.
