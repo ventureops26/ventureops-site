@@ -1,18 +1,16 @@
 # EXP-001 Commercial Readiness — Optional Support Offer
 
-_Date prepared: 4 October 2026_
+_Activated: 5 October 2026_
 
 ## Purpose
 
 Test whether users see enough value in the free AI Prompt Privacy Check to make a small voluntary payment, without inventing a paid bundle before demand exists.
 
-## Proposed Stripe product
+## Live Stripe product
 
 **Name:** Support the AI Prompt Privacy Check
 
 **Description:** Optional one-time support for Venture Ops' free AI Prompt Privacy Check. The checker remains free and no additional product or service is supplied.
-
-**Type:** One-time service/support payment
 
 **Currency:** GBP
 
@@ -22,6 +20,10 @@ Test whether users see enough value in the free AI Prompt Privacy Check to make 
 - Preset: £3
 - Maximum: £100
 
+**Product ID:** `prod_VNsdzIHFoJ5xwu`
+
+**Price ID:** `price_1UN6sQQ2Kg5gMIm72uYRUacZ`
+
 **Metadata:**
 
 - `experiment=EXP-001`
@@ -29,27 +31,30 @@ Test whether users see enough value in the free AI Prompt Privacy Check to make 
 
 **Product URL:** https://ventureops26.github.io/ventureops-site/tools/prompt-privacy-check.html
 
-## Checkout design
+## Live checkout
 
-- Stripe-hosted Payment Link
-- Dynamic payment methods; do not hard-code card-only checkout
-- No shipping address, phone number, tax ID or other unnecessary fields
+**Payment Link ID:** `plink_1UN6t3Q2Kg5gMIm7APpskU3s`
+
+**Payment Link:** https://buy.stripe.com/8x27sN5MogrpgWa4rtfEk00
+
+- Stripe-hosted checkout
+- Dynamic payment methods
+- No shipping address or phone number collection
 - No subscription
-- No saved payment method for future charges
-- No automatic tax setting unless a valid registration and tax treatment are established
+- No saved payment method requested for future charges
+- Automatic tax disabled
+- Managed Payments disabled for this link because the offer has no product tax code
 - No fulfilment action: payment is explicitly optional support and unlocks nothing
-- Clear return route to the free checker
 
 ## Website copy
 
-> Useful? You can make a small one-time payment to support further development. The checker stays free, and supporting does not unlock an additional product or service.
+> If this checker helped, you can make a small one-time payment towards further development. The checker stays free, and supporting does not unlock an additional product or service.
 
 Button label: **Support this tool**
 
 ## Risk and workload
 
 - Spend required: £0
-- Contract required: none beyond the existing Stripe account terms
 - Owner fulfilment: none
 - Customer promise: accurately limited to optional support
 - Reversibility: payment link can be deactivated; product can be archived
@@ -58,6 +63,4 @@ Button label: **Support this tool**
 
 ## Approval state
 
-**Pending explicit owner approval.**
-
-The live Stripe write was not performed. Once approval is recorded, create the product first, then create a Payment Link using its default price, then add the resulting link to the tool page and update the experiment status.
+**Approved by owner and activated.**
