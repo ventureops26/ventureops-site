@@ -22,3 +22,14 @@
 **Why:** This creates a direct willingness-to-pay signal with no advertising spend, subscription commitment or fulfilment workload.
 
 **Financial impact:** £0 spend; £100 experiment reserve untouched.
+
+
+## 6 October 2026 — Add evergreen organic acquisition before considering spend
+
+**Context:** After the first day of live checkout validation, there are no PaymentIntents, feedback emails, product enquiries or Stripe balance. This is too little exposure to judge demand.
+
+**Decision:** Publish a practical safer-AI-prompting guide, link it to the free checker, and add it to the sitemap. Continue the optional-support test unchanged.
+
+**Why:** The guide targets the same user problem, creates an indexable route into the tool, and can compound organic discovery without advertising, fulfilment work or new data collection.
+
+**Financial impact:** £0 spend; £100 experiment reserve untouched.
