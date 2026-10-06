@@ -1,6 +1,6 @@
 # Venture Ops — Operating Status
 
-_Last updated: 5 October 2026_
+_Last updated: 6 October 2026_
 
 ## Current position
 
@@ -13,7 +13,7 @@ _Last updated: 5 October 2026_
 - Charges: 0
 - Available and pending Stripe balance: £0
 - External spend committed by Venture Ops: £0
-- Organic discovery: canonical metadata, sitemap and crawler directives published
+- Organic discovery: canonical metadata, sitemap, crawler directives and an evergreen safer-prompting guide published
 
 ## Operating guardrails
 
@@ -39,13 +39,14 @@ _Last updated: 5 October 2026_
 
 **Acquisition:** Organic/direct only. No advertising spend.
 
-**Signals as of 5 October:**
+**Signals as of 6 October:**
 
 - Feedback emails: 0
 - Stripe charges: 0
 - Product enquiries: 0
 - Spend: £0
 - Search readiness: sitemap, canonical links and structured tool metadata published
+- Organic acquisition asset: practical safer-prompting guide published and linked to the checker
 - Willingness-to-pay test: live
 
 **Monetisation test:** A transparent optional one-time support payment for the free tool. Customer-set amount £1–£100, preset £3. No extra product or service is promised, so there is no fulfilment workload.
@@ -57,6 +58,7 @@ _Last updated: 5 October 2026_
 ## Next actions
 
 1. Monitor charges, feedback and enquiries without collecting prompt text.
-2. Keep the tool free while the willingness-to-pay test runs.
-3. Draft a paid companion bundle only if demand appears.
-4. Do not spend the experiment reserve without a separately justified and approved action.
+2. Track whether the new guide produces useful feedback or payment signals over a reasonable organic exposure period.
+3. Keep the tool free while the willingness-to-pay test runs.
+4. Draft a paid companion bundle only if demand appears.
+5. Do not spend the experiment reserve without a separately justified and approved action.
