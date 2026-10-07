@@ -33,3 +33,16 @@
 **Why:** The guide targets the same user problem, creates an indexable route into the tool, and can compound organic discovery without advertising, fulfilment work or new data collection.
 
 **Financial impact:** £0 spend; £100 experiment reserve untouched.
+
+
+## 7 October 2026 — Improve free-tool activation before building a paid product
+
+**Context:** The live checkout remains active, but there are still no PaymentIntents, feedback emails, product enquiries or Stripe balance. Routine Stripe and Gemini onboarding emails contain no actionable customer signal.
+
+**Decision:** Add one-click, browser-only redaction for recognised email addresses, UK phone numbers, postcodes, National Insurance numbers and NHS-number patterns. Keep the free offer and payment route otherwise unchanged.
+
+**Why:** Turning detection into an immediate useful action strengthens the free product and gives visitors a clearer reason to return or support it. Processing remains local, no prompt text is collected, and the change adds no fulfilment burden.
+
+**Safeguard:** The interface explicitly says automatic redaction is incomplete and may be imperfect; users must review results and manually handle real names or context-based sensitive information.
+
+**Financial impact:** £0 spend; £100 experiment reserve untouched.
