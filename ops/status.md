@@ -1,6 +1,6 @@
 # Venture Ops — Operating Status
 
-_Last updated: 6 October 2026_
+_Last updated: 7 October 2026_
 
 ## Current position
 
@@ -35,11 +35,11 @@ _Last updated: 6 October 2026_
 
 **Hypothesis:** A fast, private, no-login browser check is useful enough to generate direct feedback and reveal demand for a more complete paid privacy-and-prompting toolkit.
 
-**MVP:** A free checker that runs entirely in the browser, flags common UK contact and identifier patterns plus high-risk wording, and gives simple redaction guidance.
+**MVP:** A free checker that runs entirely in the browser, flags common UK contact and identifier patterns plus high-risk wording, gives redaction guidance, and can replace recognised identifiers with clear placeholders.
 
 **Acquisition:** Organic/direct only. No advertising spend.
 
-**Signals as of 6 October:**
+**Signals as of 7 October:**
 
 - Feedback emails: 0
 - Stripe charges: 0
@@ -47,6 +47,7 @@ _Last updated: 6 October 2026_
 - Spend: £0
 - Search readiness: sitemap, canonical links and structured tool metadata published
 - Organic acquisition asset: practical safer-prompting guide published and linked to the checker
+- Product utility: one-click local redaction added for recognised email, phone, postcode, National Insurance and NHS number patterns
 - Willingness-to-pay test: live
 
 **Monetisation test:** A transparent optional one-time support payment for the free tool. Customer-set amount £1–£100, preset £3. No extra product or service is promised, so there is no fulfilment workload.
