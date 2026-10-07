@@ -39,9 +39,10 @@ ul{padding-left:22px}.tip{border-left:3px solid var(--accent);padding-left:14px;
 <textarea id="prompt" placeholder="Example: Please rewrite this message to [person] about..."></textarea>
 <div class="actions">
 <button class="primary" id="check">Check my prompt</button>
+<button class="secondary" id="redact">Redact detected details</button>
 <button class="secondary" id="clear">Clear</button>
 </div>
-<p class="notice">The checker is a simple aid, not a guarantee. Always use your organisation's data and AI policies.</p>
+<p class="notice">The checker is a simple aid, not a guarantee. Automatic redaction covers only recognised patterns and can be imperfect. Always review the result and follow your organisation's data and AI policies.</p>
 </section>
 <section class="panel result" id="result" aria-live="polite">
 <div class="status" id="status"></div>
@@ -72,24 +73,34 @@ ul{padding-left:22px}.tip{border-left:3px solid var(--accent);padding-left:14px;
 </div>
 <script>
 const checks=[
- {name:"Email address",re:/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi},
- {name:"UK phone number",re:/(?:\+44\s?\d{4}|0\d{4})\s?\d{3}\s?\d{3}|(?:\+44\s?\d{3}|0\d{3})\s?\d{3}\s?\d{4}/g},
- {name:"UK postcode",re:/\b(?:GIR\s?0AA|[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/gi},
+ {name:"Email address",re:/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi,placeholder:"[EMAIL]"},
+ {name:"UK phone number",re:/(?:\+44\s?\d{4}|0\d{4})\s?\d{3}\s?\d{3}|(?:\+44\s?\d{3}|0\d{3})\s?\d{3}\s?\d{4}/g,placeholder:"[PHONE]"},
+ {name:"UK postcode",re:/\b(?:GIR\s?0AA|[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/gi,placeholder:"[POSTCODE]"},
  {name:"Date of birth wording",re:/\b(?:date of birth|dob|born on)\b/gi},
- {name:"National Insurance number",re:/\b(?!BG|GB|KN|NK|NT|TN|ZZ)[A-CEGHJ-PR-TW-Z]{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?[A-D]\b/gi},
- {name:"NHS number",re:/\b\d{3}\s?\d{3}\s?\d{4}\b/g},
+ {name:"National Insurance number",re:/\b(?!BG|GB|KN|NK|NT|TN|ZZ)[A-CEGHJ-PR-TW-Z]{2}\s?\d{2}\s?\d{2}\s?\d{2}\s?[A-D]\b/gi,placeholder:"[NI NUMBER]"},
+ {name:"NHS number",re:/\b\d{3}\s?\d{3}\s?\d{4}\b/g,placeholder:"[NHS NUMBER]"},
  {name:"Payment or account wording",re:/\b(?:card number|bank account|sort code|account number|security code|cvv|pin)\b/gi},
  {name:"Password or secret wording",re:/\b(?:password|passcode|api key|secret key|login credential)\b/gi},
  {name:"Health or safeguarding wording",re:/\b(?:diagnosis|medical record|prescription|safeguarding|social services|case file)\b/gi}
 ];
 const promptEl=document.getElementById("prompt"),result=document.getElementById("result"),status=document.getElementById("status"),details=document.getElementById("details");
-document.getElementById("check").addEventListener("click",()=>{
+function runCheck(note=""){
  const value=promptEl.value.trim();
  if(!value){result.classList.add("show");status.className="status warn";status.textContent="Add some text to check.";details.innerHTML="";return}
  const found=checks.filter(c=>{c.re.lastIndex=0;return c.re.test(value)}).map(c=>c.name);
  result.classList.add("show");
- if(found.length){status.className="status warn";status.textContent="Pause and review before pasting.";details.innerHTML="<p>Possible sensitive content detected:</p><ul>"+found.map(x=>"<li>"+x+"</li>").join("")+"</ul><p>Remove or replace those details, then check again.</p>"}
- else{status.className="status ok";status.textContent="No common warning signs found.";details.innerHTML="<p>That is a useful first check, but read the prompt once more for real names, unusual identifiers, confidential context or anything covered by your workplace policy.</p>"}
+ if(found.length){status.className="status warn";status.textContent="Pause and review before pasting.";details.innerHTML="<p>Possible sensitive content detected:</p><ul>"+found.map(x=>"<li>"+x+"</li>").join("")+"</ul><p>Remove or replace those details, then check again.</p>"+note}
+ else{status.className="status ok";status.textContent="No common warning signs found.";details.innerHTML="<p>That is a useful first check, but read the prompt once more for real names, unusual identifiers, confidential context or anything covered by your workplace policy.</p>"+note}
+}
+document.getElementById("check").addEventListener("click",()=>runCheck());
+document.getElementById("redact").addEventListener("click",()=>{
+ const original=promptEl.value;
+ if(!original.trim()){runCheck();return}
+ let safer=original;
+ checks.filter(c=>c.placeholder).forEach(c=>{c.re.lastIndex=0;safer=safer.replace(c.re,c.placeholder)});
+ if(safer===original){runCheck("<p><strong>No recognised identifiers were replaced.</strong> Wording-only warnings and real names still require manual review.</p>");return}
+ promptEl.value=safer;
+ runCheck("<p><strong>Recognised identifiers were replaced with placeholders.</strong> Review every change before using the prompt.</p>");
 });
 document.getElementById("clear").addEventListener("click",()=>{promptEl.value="";result.classList.remove("show");details.innerHTML="";status.textContent="";promptEl.focus()});
 </script>
